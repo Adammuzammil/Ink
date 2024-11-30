@@ -1,28 +1,56 @@
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { formatDistanceToNow } from "date-fns";
 import React from "react";
 import { Link } from "react-router-dom";
 
+const fetchFeaturedPost = async () => {
+  const res = await axios.get(
+    `/api/v1/posts?featured=true&limit=4&sort=newest`
+  );
+  return res.data;
+};
+
 const Featured = () => {
+  const { isPending, error, data } = useQuery({
+    queryKey: ["featuredPosts"],
+    queryFn: () => fetchFeaturedPost(),
+  });
+
+  if (isPending) return "loading...";
+  if (error) return "Something went wrong!" + error.message;
+
+  const posts = data.posts;
+  if (!posts || posts.length === 0) {
+    return;
+  }
   return (
     <div className="mt-8 flex flex-col lg:flex-row gap-8">
       <div className="w-full lg:w-1/2 flex flex-col gap-4">
-        <img
-          src="https://images.pexels.com/photos/28193003/pexels-photo-28193003/free-photo-of-dusk-panoramic-aerial-view-of-monaco.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          alt=""
-        />
+        {posts[0].img && (
+          <img
+            src="https://images.pexels.com/photos/28193003/pexels-photo-28193003/free-photo-of-dusk-panoramic-aerial-view-of-monaco.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt=""
+          />
+        )}
 
         <div className="flex items-center gap-4">
           <h1 className="font-semibold lg:text-lg">01.</h1>
           <Link to={"/"} className="text-white">
-            Web design
+            {posts[0].category}
           </Link>
-          <span className="text-gray-500">2 days ago</span>
+          <span className="text-gray-500">
+            {formatDistanceToNow(new Date(posts[0].createdAt), {
+              addSuffix: true,
+            })}
+          </span>
         </div>
 
         <Link
           to="/test"
           className="text-xl lg:text-3xl font-semibold lg:font-bold"
         >
-          Lorem ipsum dolor sit amet.
+          {posts[0].title}
         </Link>
       </div>
 
