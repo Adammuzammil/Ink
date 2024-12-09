@@ -20,7 +20,7 @@ const Search = () => {
   return (
     <div
       onKeyDown={handleSearch}
-      className="flex items-center bg-gray-100 rounded-full px-4 py-2 shadow-md max-w-md mx-auto"
+      className="flex items-center bg-white rounded-full px-4 py-2 shadow-md max-w-md mx-auto"
     >
       <SearchIcon className="text-gray-500 w-5 h-5 mr-2" />
       <input

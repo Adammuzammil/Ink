@@ -23,11 +23,11 @@ const SideMenu = () => {
     }
   };
   return (
-    <div className="px-4 h-max sticky top-8">
-      <div className="mb-4 text-sm font-medium">
+    <div className="px-4 h-max sticky top-16 bg-[#C3DD1F] py-2 pb-6 rounded-lg">
+      {/* <div className="mb-4 text-sm font-medium">
         <Search />
-      </div>
-      <h1 className="mt-8 mb-4 text-sm font-medium">Filter</h1>
+      </div> */}
+      <h1 className="mt-6 mb-4 text-3xl font-bold">Filter</h1>
       <div className="">
         <select
           name="sort"

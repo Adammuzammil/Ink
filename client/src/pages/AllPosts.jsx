@@ -5,19 +5,28 @@ import SideMenu from "../components/SideMenu";
 const AllPosts = () => {
   const [open, setOpen] = useState(false);
   return (
-    <div>
-      <h1 className="mb-8 text-2xl">Development Blog</h1>
+    <div className="min-h-screen ">
+      <h1 className="mb-8 text-4xl font-bold text-center">ALL BLOGS</h1>
       <button
         onClick={() => setOpen((prev) => !prev)}
         className="bg-blue-800 text-sm text-white px-4 py-2 rounded-2xl mb-4 md:hidden"
       >
         {open ? "Close" : "Filter or Search"}
       </button>
-      <div className="flex flex-col-reverse gap-8 md:flex-row">
-        <div>
+      <div
+        className={`grid gap-10 px-4 md:px-16 lg:px-32 ${
+          open ? "grid-rows-[auto_auto]" : "grid-cols-1 md:grid-cols-[2fr_1fr]"
+        }`}
+      >
+        <div className="flex-1">
           <PostsList />
         </div>
-        <div className={`${open ? "block" : "hidden"} md:block`}>
+
+        <div
+          className={`${
+            open ? "block" : "hidden"
+          } md:block bg-white p-4 rounded-lg`}
+        >
           <SideMenu />
         </div>
       </div>

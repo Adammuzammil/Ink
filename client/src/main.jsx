@@ -12,6 +12,7 @@ import { ClerkProvider } from "@clerk/clerk-react";
 import AllPosts from "./pages/AllPosts.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
+import UserProfile from "./pages/UserProfile";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/posts",
         element: <AllPosts />,
+      },
+      {
+        path: "/posts/author/:username",
+        element: <UserProfile />,
       },
       {
         path: "/:slug",

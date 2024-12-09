@@ -38,7 +38,7 @@ const PostsList = () => {
       lastPage.hasMore ? pages.length + 1 : undefined,
   });
 
-  if (isFetching) return "Loading...";
+  if (isFetching) return "INK...";
 
   if (error) return "Something went wrong!";
 
