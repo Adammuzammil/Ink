@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PostsList from "../components/PostsList";
 import SideMenu from "../components/SideMenu";
 import DemoPosts from "@/components/DemoPosts";
 
 const AllPosts = () => {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="min-h-screen ">
       <h1 className="mb-8 text-4xl font-bold text-center">ALL BLOGS</h1>
