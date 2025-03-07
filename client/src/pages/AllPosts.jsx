@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PostsList from "../components/PostsList";
 import SideMenu from "../components/SideMenu";
+import DemoPosts from "@/components/DemoPosts";
 
 const AllPosts = () => {
   const [open, setOpen] = useState(false);
@@ -18,8 +19,8 @@ const AllPosts = () => {
           open ? "grid-rows-[auto_auto]" : "grid-cols-1 md:grid-cols-[2fr_1fr]"
         }`}
       >
-        <div className="flex-1">
-          <PostsList />
+        <div className="flex-1 py-10">
+          <DemoPosts />
         </div>
 
         <div

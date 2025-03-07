@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
 
-const PostItem = ({ post }) => {
+const PostItem = ({ post, index, isLastItem }) => {
   const extractDateAndTime = (dateString) => {
     const dateObject = new Date(dateString);
 
@@ -17,7 +17,12 @@ const PostItem = ({ post }) => {
   const { date, time } = extractDateAndTime(post.createdAt);
 
   return (
-    <div className="flex justify-between items-center gap-4 border-b border-black py-6 relative">
+    <div
+      key={post.id}
+      className={`flex justify-between items-center gap-4 py-10 relative ${
+        isLastItem ? "" : "border-b border-black"
+      }`}
+    >
       {/* Category */}
       <div className="flex flex-col gap-2">
         <span className="block text-green-400 text-sm uppercase tracking-widest">
@@ -37,7 +42,7 @@ const PostItem = ({ post }) => {
               to={`/posts/author/${post.user.username}`}
               className="text-blue-400 text-sm  uppercase"
             >
-              {post.user.username}
+              {post.username}
             </Link>
             <span> {date}</span>
           </div>
